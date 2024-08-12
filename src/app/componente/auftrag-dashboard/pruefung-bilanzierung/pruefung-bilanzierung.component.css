@@ -1,0 +1,102 @@
+/* variable-druckdaten-detail.component.css */
+
+.mat-table-container {
+ 
+  width: 60%;
+  margin: 0 auto;
+}
+  
+h3 {
+  margin-bottom: 16px;
+}
+
+h4 {
+  margin-bottom: 24px;
+  font-weight: normal;
+}
+.mat-elevation-z8.demo-table {
+  width: 60%;
+}
+.demo-table.mat-table {
+  max-width:  60%;
+  margin-bottom: 24px;
+}
+.mat-elevation-z8{
+  max-width:  60%;
+  justify-self: start;
+}
+th.mat-header-cell {
+  background-color: #f1f1f1; /* Hintergrundfarbe für die Kopfzeilen */
+  text-align: left; /* Textausrichtung für die Kopfzeilen */
+}
+
+td.mat-cell {
+  text-align: left; /* Textausrichtung für die Zellen */
+  
+}
+.actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content:center;
+}
+.actions :disabled {
+  margin-top: 20px;
+  background-color: gray;
+  display: flex;
+  justify-content:center;
+}
+.verification-section {
+  margin-top: 20px;
+}
+
+.verification {
+  margin-bottom: 20px;
+}
+
+.verification h4 {
+  margin-bottom: 10px;
+}
+
+.photo-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content:center; 
+}
+
+.photo-container {
+  position: relative;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  overflow: hidden;
+  width: 100px;
+  height: 100px;
+
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo-container button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+}
+.a{
+  display: flex; /* Flexbox aktivieren */
+  flex-wrap: nowrap; /* Verhindert das Umfließen der Schaltflächen in die nächste Zeile */
+  gap: 10px; /* Abstand zwischen den Schaltflächen */
+  align-items: center; /* Optional: Vertikale Zentrierung der Schaltflächen */
+  justify-content:center; /* Optional: Ausrichtung der Schaltflächen am Anfang des Containers */
+}
+.a p{
+  color: red;
+}.full-width{
+  max-width: 100px;
+}

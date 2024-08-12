@@ -1,0 +1,80 @@
+/* variable-druckdaten-detail.component.css */
+
+  
+  h3 {
+    margin-bottom: 16px;
+  }
+  
+  h4 {
+    margin-bottom: 24px;
+    font-weight: normal;
+  }
+  
+  table.mat-table {
+    max-width:  90%;
+    margin-bottom: 24px;
+  }
+  .mat-elevation-z8{
+    max-width:  90%;
+    justify-self: start;
+  }
+  th.mat-header-cell {
+    background-color: #f1f1f1; /* Hintergrundfarbe für die Kopfzeilen */
+    text-align: left; /* Textausrichtung für die Kopfzeilen */
+  }
+  
+  td.mat-cell {
+    text-align: left; /* Textausrichtung für die Zellen */
+  }
+  
+  .dropdown-section, .verification-section {
+    display: flex;
+    flex-wrap: wrap; /* Zeilenumbruch bei kleinen Bildschirmen */
+    gap: 16px; /* Abstand zwischen den Formularfeldern */
+    margin-bottom: 24px;
+  }
+  
+  .dropdown-field {
+    flex: 1 1 300px; /* Flexibles Layout für Formularelemente */
+  }
+  
+  .verification {
+    display: flex;
+    align-items: center; /* Vertikale Zentrierung */
+    gap: 8px; /* Abstand zwischen Elementen */
+  }
+  
+  .verification input {
+    flex: 1;
+    max-width: 400px; /* Maximalbreite für Eingabefelder */
+  }
+  
+  .photo-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Abstand zwischen Fotos */
+  }
+  
+  .photo {
+    width: 100px; /* Festgelegte Breite für Fotos */
+    height: 100px; /* Festgelegte Höhe für Fotos */
+    object-fit: cover; /* Bild an Containergröße anpassen */
+  }
+  
+  .actions {
+    display: flex;
+    gap: 16px; /* Abstand zwischen den Aktionen */
+    margin-top: 24px;
+  }
+  .full-width{
+    max-width: 100px;
+  }
+  .preformatted-text {
+    white-space: pre-line; /* Preserves line breaks */
+    font-family: monospace; /* Optional: Mimic the look of <pre> */
+  }
+  .positionData{
+    max-width: 600px;
+    margin-top: 10px;
+margin-bottom: 10px;
+  }

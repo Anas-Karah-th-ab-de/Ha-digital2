@@ -1,0 +1,25 @@
+<div [ngClass]="{ 'gray-theme': isGrayTheme, 'white-theme': !isGrayTheme }">
+  <div class="swipe-container" *ngIf="isUserLoggedIn">
+    <mat-slide-toggle (change)="toggleTheme()"></mat-slide-toggle>
+
+    <button class="swipe-button" (click)="navigateToSection('dashboard')" [ngClass]="{'active': isCurrentSection('dashboard')}">
+      <mat-icon>home</mat-icon>
+      <span>Dashboard</span>
+    </button>
+
+    <!-- Section status buttons under Last Action -->
+
+    <button *ngFor="let section of Sections"  class="swipe-button" (click)="navigateToSection(section.path)" [ngClass]="getButtonClasses(section.path)">
+      <mat-icon>{{ section.icon }}</mat-icon>
+      <span>{{ section.label }}</span>
+    </button>
+
+  <button class="swipe-button" (click)="logout()">
+    <mat-icon>logout</mat-icon>
+    <span>Logout</span>
+  </button>
+</div>
+
+<router-outlet></router-outlet>
+</div>
+

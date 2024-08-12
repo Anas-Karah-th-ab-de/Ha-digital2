@@ -1,0 +1,23 @@
+<h1 mat-dialog-title>{{ data.type | titlecase }}</h1>
+<div mat-dialog-content>
+  <mat-form-field *ngIf="data.type !== 'photo'">
+    <textarea matInput placeholder="Geben Sie hier Ihren Text ein" [(ngModel)]="inputText"></textarea>
+  </mat-form-field>
+  <div *ngFor="let photo of capturedPhotos; let i = index" class="photo-container">
+    <img [src]="photo" alt="Captured photo" class="captured-photo"  >
+    <button mat-icon-button color="warn" (click)="deletePhoto(i)">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+ 
+    <video #videoElement width="100%" autoplay></video>
+  
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="cancel()">Abbrechen</button>
+  <button mat-button *ngIf="!isCameraRunning" (click)="toggleCamera()">Kamera starten</button>
+  <button mat-button *ngIf="isCameraRunning" (click)="capturePhoto()">Foto aufnehmen</button>
+  <button mat-button *ngIf="isCameraRunning" (click)="switchCamera()">Kamera wechseln</button> <!-- Button zum Wechseln der Kamera -->
+  <button mat-button (click)="save()">Speichern</button>
+</div>
+

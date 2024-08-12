@@ -1,0 +1,56 @@
+
+<div class="container">
+    <h1>Wareneingangsprüfung {{orders[0]?.auftragsnr}}</h1>
+
+  
+
+    <div class="info">
+      <mat-form-field appearance="fill">
+        <mat-label>Ware/Packmittel auswählen</mat-label>
+        <mat-select [(value)]="selectedOrder" (selectionChange)="onOrderChange()">
+          <mat-option *ngFor="let order of orders" [value]="order">{{ order.pos }} - {{ order.rohwarepackmittel_bezeichnung }} - {{ order.rohwarepackmittel_artnr }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  
+    <div *ngIf="selectedOrder" class="details">
+      <p>Daten der Ware/des Packmittels</p>
+      <p>Artnr: {{ selectedOrder.rohwarepackmittel_artnr }}</p>
+      <p>Bezeichnung: {{ selectedOrder.rohwarepackmittel_bezeichnung }}</p>
+      <p>Charge: {{ selectedOrder.rohwareCharge }}</p>
+      <p>MHD: {{ selectedOrder.rohwaredruckdatum }}</p>
+    </div>
+  
+    <div class="mat-table-container">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  
+        <!-- ID Column -->
+        <ng-container matColumnDef="id">
+          <mat-header-cell *matHeaderCellDef> Lfd. Nummer </mat-header-cell>
+          <mat-cell *matCellDef="let element">{{ element.id }}</mat-cell>
+        </ng-container>
+  
+        <!-- Geprüft Column -->
+        <ng-container matColumnDef="geprueft">
+          <mat-header-cell *matHeaderCellDef> Geprüft </mat-header-cell>
+          <mat-cell *matCellDef="let entry">
+            <button mat-raised-button color="primary" (click)="verifyEntry(entry)" [disabled]="entry.verified">Bestätigen</button>
+            <span *ngIf="entry.verified">{{ entry.verifierName }} - {{ entry.verifiedAt | date: 'short' }}</span>
+          </mat-cell>
+        </ng-container>
+  
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </table>
+  
+      <button mat-fab color="primary" aria-label="Add" (click)="addRow()">
+        <mat-icon>add</mat-icon>
+      </button>
+  
+      <div class="actions">
+        <button mat-raised-button color="primary" (click)="saveData()">Speichern</button>
+        <button mat-raised-button color="warn" (click)="cancel()">Abbrechen</button>
+      </div>
+    </div>
+  </div>
+  

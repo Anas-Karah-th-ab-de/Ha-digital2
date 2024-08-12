@@ -1,0 +1,68 @@
+/* Base styles for the application */
+body {
+    margin: 0;
+    font-family: Roboto, Arial, sans-serif;
+  }
+  
+  /* Gray theme styles */
+  body.gray-theme {
+    background-color: #424242; /* Dark gray background */
+    color: #ffffff; /* White text */
+  }
+  
+  body.gray-theme .mat-toolbar {
+    background: #616161; /* Medium gray background */
+    color: #ffffff; /* White text */
+  }
+  
+  body.gray-theme .mat-card,
+  body.gray-theme .mat-form-field-appearance-fill .mat-form-field-flex,
+  body.gray-theme .mat-table {
+    background: #616161; /* Medium gray background */
+    color: #ffffff; /* White text */
+  }
+  
+  body.gray-theme .mat-form-field-label,
+  body.gray-theme .mat-input-element,
+  body.gray-theme .mat-select-trigger {
+    color: #bdbdbd; /* Light gray text */
+  }
+  
+  body.gray-theme .mat-button,
+  body.gray-theme .mat-raised-button,
+  body.gray-theme .mat-fab {
+    background: #757575; /* Slightly lighter gray for buttons */
+    color: #ffffff; /* White text */
+  }
+  
+  /* White theme styles */
+  body.white-theme {
+    background-color: #ffffff; /* White background */
+    color: #000000; /* Black text */
+  }
+  
+  body.white-theme .mat-toolbar {
+    background: #f5f5f5; /* Light gray background */
+    color: #000000; /* Black text */
+  }
+  
+  body.white-theme .mat-card,
+  body.white-theme .mat-form-field-appearance-fill .mat-form-field-flex,
+  body.white-theme .mat-table {
+    background: #f5f5f5; /* Light gray background */
+    color: #000000; /* Black text */
+  }
+  
+  body.white-theme .mat-form-field-label,
+  body.white-theme .mat-input-element,
+  body.white-theme .mat-select-trigger {
+    color: #424242; /* Dark gray text */
+  }
+  
+  body.white-theme .mat-button,
+  body.white-theme .mat-raised-button,
+  body.white-theme .mat-fab {
+    background: #e0e0e0; /* Light gray for buttons */
+    color: #000000; /* Black text */
+  }
+  

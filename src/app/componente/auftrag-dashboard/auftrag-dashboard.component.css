@@ -1,0 +1,60 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    padding: 10px;
+  }
+  
+  .input-card {
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 20px;
+    background-color: rgb(12, 45, 75);
+
+  }
+  
+  .mat-form-field {
+    width: 100%;
+  }
+  
+  .button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    justify-content: center;
+  }
+  
+  .auftrag-details {
+    width: 100%;
+    max-width:100%;
+    margin-top: 20px;
+    padding: 20px;
+    color: #faf6f6;
+    background-color: rgb(13, 50, 80);
+  }
+  
+  .detail-card {
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .ipc-card {
+    margin-top: 10px;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  td {
+    border: 1px solid black;
+    padding: 8px;
+  }
+  h2{
+    color: aliceblue;
+  }
+  

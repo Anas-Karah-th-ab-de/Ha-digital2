@@ -1,0 +1,72 @@
+/* variable-druckdaten-detail.component.css */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: self-start;
+  margin: 40px;
+  width: 90%;
+}
+.info-section{
+  min-width: 600px !important;
+}
+h3 {
+  margin-bottom: 16px;
+}
+
+h4 {
+  margin-bottom: 24px;
+  font-weight: normal;
+}
+
+table.mat-table {
+  width: 80%;
+  margin-bottom: 24px;
+}
+.mat-elevation-z8{
+width: 80%;
+}
+th.mat-header-cell {
+  background-color: #f1f1f1; /* Hintergrundfarbe für die Kopfzeilen */
+  text-align: left; /* Textausrichtung für die Kopfzeilen */
+}
+
+td.mat-cell {
+  text-align: left; /* Textausrichtung für die Zellen */
+}
+
+.dropdown-section, .verification-section {
+  display: flex;
+  flex-wrap: wrap; /* Zeilenumbruch bei kleinen Bildschirmen */
+  gap: 16px; /* Abstand zwischen den Formularfeldern */
+  margin-bottom: 24px;
+}
+
+.dropdown-field {
+  flex: 1 1 300px; /* Flexibles Layout für Formularelemente */
+}
+
+.verification {
+  display: flex;
+  align-items: center; /* Vertikale Zentrierung */
+  gap: 8px; /* Abstand zwischen Elementen */
+}
+
+.verification input {
+  flex: 1;
+  max-width: 400px; /* Maximalbreite für Eingabefelder */
+}
+
+
+
+.actions {
+  display: flex;
+  gap: 16px; /* Abstand zwischen den Aktionen */
+  margin-top: 24px;
+  justify-content: center;
+}
+
+.full-width {
+  flex: 1;
+  max-width: 150px !important;
+}
+

@@ -1,0 +1,7 @@
+{
+  "name": "Ha-Digital",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

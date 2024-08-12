@@ -1,0 +1,108 @@
+<mat-toolbar color="primary">
+  <span>Auftrag Dashboard</span>
+</mat-toolbar>
+
+<div class="container">
+  <mat-card class="input-card">
+    <h2>Auftragsnummer Eingabe</h2>
+    <mat-form-field appearance="fill">
+      <mat-label>Auftragsnummer</mat-label>
+      <input matInput [(ngModel)]="auftragsnummer" />
+    </mat-form-field>
+    <div class="button-group">
+      <button mat-raised-button color="primary" (click)="fetchAuftragData()">Fetch Data</button>
+      <button mat-raised-button color="accent" (click)="getCachedAuftragData()">Load Cached Data</button>
+    </div>
+  </mat-card>
+
+  <mat-card *ngIf="order" class="auftrag-details">
+    <h2>Auftragsdetails</h2>
+    <table style="width: 100%; border-collapse: collapse;">
+      <tr>
+        <td style="border: 1px solid black; padding: 8px;"><strong>Kunde / Customer:</strong></td>
+        <td style="border: 1px solid black; padding: 8px;">{{ order.kunde }}</td>
+        <td style="border: 1px solid black; padding: 8px;"><strong>PP-Auftrag-Nr. / PP-Job No.:</strong></td>
+        <td style="border: 1px solid black; padding: 8px;">{{ order.auftragsnr }}</td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid black; padding: 8px;"><strong>Charge / Lot No.:</strong></td>
+        <td style="border: 1px solid black; padding: 8px;">{{ order.charge }}</td>
+        <td style="border: 1px solid black; padding: 8px;"><strong>Kunden Bestell-Nr. / Customer Order No.:</strong></td>
+        <td style="border: 1px solid black; padding: 8px;">{{ order.kundenbestellnummer }}</td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid black; padding: 8px;"><strong>Darreichungsform / Application form:</strong></td>
+        <td style="border: 1px solid black; padding: 8px;">{{ order.darreichungsform }}</td>
+        <td style="border: 1px solid black; padding: 8px;"><strong>MHD / Exp.:</strong></td>
+        <td style="border: 1px solid black; padding: 8px;">{{ order.mhd }}</td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid black; padding: 8px;"><strong>Liefermenge / Quantity shipped:</strong></td>
+        <td style="border: 1px solid black; padding: 8px;">{{ order.we_menge }}</td>
+        <td style="border: 1px solid black; padding: 8px;"><strong>SOLL-Menge / Quantity planned:</strong></td>
+        <td style="border: 1px solid black; padding: 8px;">{{ order.sollmenge }}</td>
+      </tr>
+    </table>
+
+    <h2>Prozesse und Prüfungen</h2>
+    <mat-grid-list cols="3" rowHeight="100px" gutterSize="10px">
+      <mat-grid-tile><button mat-raised-button color="primary" (click)="navigateToSection('PruefungWarePackmittelComponent')">Prüfung Ware/Packmittel</button></mat-grid-tile>
+      <mat-grid-tile><button mat-raised-button color="primary" (click)="navigateToSection('ProzessSchritteLinienComponent')">Prozess-Schritte / Linien</button></mat-grid-tile>
+      <mat-grid-tile><button mat-raised-button color="primary" (click)="navigateToSection('PruefgewichtErmittelnComponent')">Prüfgewicht ermitteln</button></mat-grid-tile>
+      <mat-grid-tile><button mat-raised-button color="primary" (click)="navigateToSection('AusschussFotograferenComponent')">Ausschuss fotografieren</button></mat-grid-tile>
+      <mat-grid-tile><button mat-raised-button color="primary" (click)="navigateToSection('PruefungBilanzierungComponent')">Prüfung Bilanzierung</button></mat-grid-tile>
+      <mat-grid-tile><button mat-raised-button color="primary" (click)="navigateToSection('VernichtungsprotokollComponent')">Vernichtungsprotokoll</button></mat-grid-tile>
+      <mat-grid-tile><button mat-raised-button color="primary" (click)="navigateToSection('KontrollwaageKalibrierenComponent')">Kontrollwaage kalibrieren</button></mat-grid-tile>
+      <mat-grid-tile><button mat-raised-button color="primary" (click)="navigateToSection('NachweisKuehiketteComponent')">Nachweis Kühlkette</button></mat-grid-tile>
+      <mat-grid-tile><button mat-raised-button color="primary" (click)="navigateToSection('VariableDruckdatenComponent')">Variable Druckdaten</button></mat-grid-tile>
+      <mat-grid-tile><button mat-raised-button color="primary" (click)="navigateToSection('WareneingangspruefungComponent')">Wareneingangsprüfung</button></mat-grid-tile>
+    </mat-grid-list>
+
+    <h2>IPC Prüfungen</h2>
+    <mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="machine">
+        <mat-header-cell *matHeaderCellDef> Maschine </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{ row.id2.name }} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="time">
+        <mat-header-cell *matHeaderCellDef> Prüfzeit (Soll) </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <mat-form-field appearance="fill">
+            <mat-select [(value)]="row.time" (selectionChange)="onTimeChange($event, row)">
+              <mat-option *ngFor="let time of times" [value]="time">{{ time }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="samples">
+        <mat-header-cell *matHeaderCellDef> Anzahl geprüfte Muster </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <mat-form-field appearance="fill">
+            <input matInput type="number" [(ngModel)]="row.samples">
+          </mat-form-field>
+        </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="deviation">
+        <mat-header-cell *matHeaderCellDef> Abweichung </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <button mat-raised-button color="warn" (click)="openDeviationDialog(row)">Abweichung</button>
+          <span *ngIf="row.deviation">✓</span>
+        </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <button mat-raised-button color="primary" (click)="verifyEntry(row)" [disabled]="row.verified">Bestätigen</button>
+          <span *ngIf="row.verified">{{ row.verifierName }} - {{ row.verifiedAt | date: 'short' }}</span>
+        </mat-cell>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </mat-card>
+</div>

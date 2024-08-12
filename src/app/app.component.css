@@ -1,0 +1,106 @@
+/* Styles for the swipeable container */
+.swipe-container {
+  position: fixed !important;
+  top: 50% !important;
+  right: 10px !important;
+  transform: translateY(-50%) !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1000;
+}
+
+
+/* Styles for the swipeable buttons */
+.swipe-button  {
+  position: relative !important;
+  background-color: #007bff ;
+  color: white;
+  padding: 8px;
+  margin: 3px 0;
+  border: none;
+  border-radius: 5px ;
+  cursor: pointer;
+  width: 50px !important;
+  height: 40px;
+  text-align: center !important;
+  transition: width 0.3s;
+  overflow: hidden;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  clip-path: polygon(0 50%, 100% 0, 100% 100%) ;
+}
+
+/* Styles for the expanded button state */
+.swipe-button.expanded {
+  width: 200px !important;
+  clip-path: none;
+  border-radius: 5px;
+}
+
+/* Styles for the button text */
+.swipe-button span {
+  display: none;
+  margin-left: 20px;
+}
+
+.swipe-button.expanded span {
+  display: inline;
+}
+
+/* Styles for the icons */
+.swipe-button mat-icon {
+  font-size: 24px;
+}
+
+.app-container {
+  height: 100%;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+/* Dark theme styles */
+body.dark-theme {
+  background-color: #303030;
+  color: #ffffff;
+}
+
+body.dark-theme .swipe-button {
+  background-color: #424242;
+  color: #ffffff;
+}
+
+body.dark-theme .swipe-button.expanded {
+  background-color: #616161;
+}
+
+body.dark-theme .swipe-button span {
+  color: #ffffff;
+}
+
+/* Section status styles */
+.section-status {
+  margin: 10px;
+}
+
+.swipe-button.completed {
+  background-color: green;
+}
+
+.swipe-button.in-progress {
+  background-color: red;
+}
+
+.swipe-button.not-started {
+  background-color: rgb(145, 145, 25);
+}
+.swipe-button.active {
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+
+  width: 50px;
+  clip-path: none;
+  border-radius: 5px;
+}

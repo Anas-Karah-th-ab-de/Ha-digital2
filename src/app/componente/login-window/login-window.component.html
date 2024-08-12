@@ -1,0 +1,18 @@
+<form (ngSubmit)="onLogin()">
+    <div>
+      <label>Benutzername:</label>
+      <input type="text" [(ngModel)]="username" name="username" required>
+    </div>
+    <div class="password-container">
+      <label>Passwort:</label>
+      <input [type]="isPasswordVisible ? 'text' : 'password'" [(ngModel)]="password" name="password" required>
+      <i (click)="togglePasswordVisibility()">
+        {{ isPasswordVisible ? '🙈' : '👁️' }}
+      </i>
+    </div>
+    
+    
+    
+   
+    <button type="submit">Login</button>
+  </form>

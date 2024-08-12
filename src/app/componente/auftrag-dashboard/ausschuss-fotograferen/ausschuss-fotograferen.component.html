@@ -1,0 +1,69 @@
+<div class="container">
+  <h1> IPC Maschine</h1>
+  <mat-form-field appearance="fill">
+    <mat-label>Maschine auswählen </mat-label>
+    <mat-select [(value)]="selectedMachine">
+      <mat-option *ngFor="let machine of machines" [value]="machine">{{ machine.id }}-{{ machine.name }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div *ngIf="selectedMachine">
+    <h2>{{ selectedMachine.id }}-{{ selectedMachine.name }}</h2>
+    <div class="example-container mat-elevation-z8">
+      <mat-table [dataSource]="dataSources[selectedMachine.id]">
+      
+        <!-- Prüfzeit Column -->
+        <ng-container matColumnDef="time">
+          <mat-header-cell *matHeaderCellDef> Prüfzeit (Soll) </mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            <mat-form-field appearance="fill">
+              <mat-select [(value)]="row.time" (selectionChange)="onTimeChange($event, row)">
+                <mat-option *ngFor="let time of times" [value]="time">{{ time }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </mat-cell>
+        </ng-container>
+        
+        <!-- Anzahl geprüfte Muster Column -->
+        <ng-container matColumnDef="samples">
+          <mat-header-cell *matHeaderCellDef> Anzahl geprüfte Muster </mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            <mat-form-field appearance="fill">
+              <input matInput type="number" [(ngModel)]="row.samples">
+            </mat-form-field>
+          </mat-cell>
+        </ng-container>
+      
+        <!-- Abweichung Column -->
+        <ng-container matColumnDef="deviation">
+          <mat-header-cell *matHeaderCellDef> Abweichung </mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            <button mat-raised-button color="warn" (click)="openDeviationDialog(row, selectedMachine.id)">Abweichung</button>
+            <span *ngIf="row.deviation">✓</span>
+          </mat-cell>
+        </ng-container>
+      
+        <!-- Status Column -->
+        <ng-container matColumnDef="status">
+          <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            <button mat-raised-button color="primary" (click)="verifyEntry(row, selectedMachine.id)" [disabled]="row.verified">Bestätigen</button>
+            <span *ngIf="row.verified">{{ row.verifierName }} - {{ row.verifiedAt | date: 'short' }}</span>
+          </mat-cell>
+        </ng-container>
+      
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+    </div>
+    
+    <button mat-fab color="primary" aria-label="Add" (click)="addRow(selectedMachine.id)">
+      <mat-icon>add</mat-icon>
+    </button>
+
+    <div class="actions">
+      <button mat-raised-button color="primary" (click)="saveData()">Speichern</button>
+      <button mat-raised-button color="warn" (click)="cancel(selectedMachine.id)">Abbrechen</button>
+    </div>
+  </div>
+</div>

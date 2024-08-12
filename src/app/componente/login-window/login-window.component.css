@@ -1,0 +1,78 @@
+form {
+  max-width: 300px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(6, 66, 179, 0.781);
+}
+
+form div {
+  margin-bottom: 15px;
+}
+
+form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+form input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+form button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #2e1ebe;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+form button:hover {
+  background-color: #555;
+}
+/* Container für das Passwort-Eingabefeld und das Auge-Symbol */
+.password-container {
+  position: relative;
+  width: 250px; /* Sie können die Breite nach Bedarf anpassen */
+}
+
+/* Das Passwort-Eingabefeld */
+.password-container input[type="password"],
+.password-container input[type="text"] {
+  width: 100%;
+  padding: 10px 40px 10px 10px; /* Platz rechts für das Auge-Symbol */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: border-color 0.3s ease; /* Optional: Glatter Übergang bei Fokus */
+}
+
+.password-container input[type="password"]:focus,
+.password-container input[type="text"]:focus {
+  border-color: #0077cc; /* Farbe beim Fokus. Sie können diese nach Bedarf anpassen */
+  outline: none;
+}
+
+/* Das Auge-Symbol */
+.password-container i {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 18px; /* Größe des Auge-Symbols. Sie können diese nach Bedarf anpassen */
+  color: #555; /* Farbe des Auge-Symbols. Sie können diese nach Bedarf anpassen */
+}
+
+.password-container i:hover {
+  color: #0077cc; /* Farbe des Auge-Symbols beim Hover. Sie können diese nach Bedarf anpassen */
+}

@@ -1,0 +1,76 @@
+<div class="container">
+  <h1>Kontrollwaage prüfen</h1>
+
+  <div class="form-section">
+    <mat-form-field appearance="fill">
+      <mat-label>Waage auswählen</mat-label>
+      <mat-select [(value)]="selectedScale">
+        <mat-option *ngFor="let scale of scales" [value]="scale.name">{{ scale.id }}-{{ scale.name }} </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  
+  <div class="reference-weight">
+    <span>Zu verwendendes Prüfgewicht: {{ referenceWeight }} g (vorgegeben durch Ergebnis von Formular Prüfgewicht ermitteln)</span>
+  </div>
+  
+ 
+    <mat-table #table [dataSource]="dataSource">
+  
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+      </ng-container>
+  
+      <!-- Gewogener Wert Column -->
+      <ng-container matColumnDef="weight">
+        <mat-header-cell *matHeaderCellDef> Gewogener Wert </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <mat-form-field appearance="fill">
+            <input 
+              matInput 
+              type="number" 
+              [(ngModel)]="row.weight" 
+              [ngModel]="row.weight | number:'1.2-2'" 
+              [disabled]="row.verified"
+              (ngModelChange)="onWeightChange(row)">
+          </mat-form-field>
+        </mat-cell>
+      </ng-container>
+      
+      
+      
+  
+      <!-- Abweichung Column -->
+      <ng-container matColumnDef="deviation">
+        <mat-header-cell *matHeaderCellDef> Abweichung </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <mat-form-field appearance="fill">
+            <input matInput type="number" [(ngModel)]="row.deviation" [disabled]="row.verified">
+          </mat-form-field>
+        </mat-cell>
+      </ng-container>
+  
+      <!-- Verify Column -->
+      <ng-container matColumnDef="verify">
+        <mat-header-cell *matHeaderCellDef> Verifizieren </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <button mat-raised-button color="primary" (click)="verifyEntry(row)" [disabled]="row.verified">Bestätigen</button>
+          <span *ngIf="row.verified">{{ row.verifierName }} - {{ row.verifiedAt | date: 'short' }}</span>
+        </mat-cell>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+  <button mat-fab color="primary" aria-label="Add" (click)="addRow()">
+    <mat-icon>add</mat-icon>
+  </button>
+
+  <div class="actions">
+    <button mat-raised-button color="primary" (click)="saveData()">Speichern</button>
+    <button mat-raised-button color="warn" (click)="cancel()">Abbrechen</button>
+  </div>
+</div>

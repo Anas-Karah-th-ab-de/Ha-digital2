@@ -1,0 +1,17 @@
+/* variable-druckdaten.component.css */
+.container {
+    padding: 16px;
+  }
+  
+  .button-container {
+    display: flex; /* Flexbox aktivieren */
+    flex-wrap: nowrap; /* Verhindert das Umfließen der Schaltflächen in die nächste Zeile */
+    gap: 10px; /* Abstand zwischen den Schaltflächen */
+    align-items: center; /* Optional: Vertikale Zentrierung der Schaltflächen */
+    justify-content: flex-start; /* Optional: Ausrichtung der Schaltflächen am Anfang des Containers */
+  }
+  
+  button {
+    margin: 0; /* Entfernt Standard-Abstände von Buttons */
+  }
+  

@@ -1,0 +1,132 @@
+<div class="container">
+  <h3>Prüfung Bilanzierung {{ orders[0]?.auftragsnr }}</h3>
+
+    <table mat-table class="mat-elevation-z8 demo-table" [dataSource]="orders" 
+     matSort style="max-width: 50%;">
+
+      <!-- Columns -->
+      <ng-container matColumnDef="rohwarepackmittel_artnr">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Artikel-Nr. Art. No.</th>
+        <td mat-cell *matCellDef="let order">
+          <ng-container *ngIf="order.rohwarepackmittel_artnr === 'TamperEvident'; else normalArtNr">
+            <mat-form-field>
+              <mat-select [(value)]="order.rohwarepackmittel_artnr" (selectionChange)="saveInputChanges(order, 'rohwarepackmittel_artnr', $event.value)">
+                <mat-option *ngFor="let option of tamperEvidentOptions" [value]="option">
+                  {{ option }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </ng-container>
+          <ng-template #normalArtNr>
+            {{ order.rohwarepackmittel_artnr }}
+          </ng-template>
+        </td>
+      </ng-container>
+
+ 
+
+      <ng-container matColumnDef="rohwarepackmittel_bezeichnung">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Bezeichnung Rohware/Material Description</th>
+        <td mat-cell *matCellDef="let order">{{ order.rohwarepackmittel_bezeichnung }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="rohwareCharge">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Charge / Lot.</th>
+        <td mat-cell *matCellDef="let order">{{ order.rohwareCharge }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="pmCharge">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>PM-Charge</th>
+        <td mat-cell *matCellDef="let order">{{ order.pmCharge }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="rohwaredruckdatum">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>MHD / EXP</th>
+        <td mat-cell *matCellDef="let order">{{ order.rohwaredruckdatum }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="produktionsMenge">
+        <th mat-header-cell *matHeaderCellDef>Produktions- menge</th>
+        <td mat-cell *matCellDef="let order">
+          <mat-form-field appearance="fill" class="full-width">
+          <input matInput [(ngModel)]="order.produktionsMenge" (ngModelChange)="saveInputChanges(order, 'produktionsMenge', $event)" placeholder="Produktionsmenge">
+        </mat-form-field>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="ppMishandling">
+        <th mat-header-cell *matHeaderCellDef>Ausschuss durch PP</th>
+        <td mat-cell *matCellDef="let order">
+          <mat-form-field appearance="fill" class="full-width">
+          <input matInput [(ngModel)]="order.ppMishandling" (ngModelChange)="saveInputChanges(order, 'ppMishandling', $event)" placeholder="Ausschuss durch PP">
+        </mat-form-field>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="extReason">
+        <th mat-header-cell *matHeaderCellDef>Ausschuss wg ext. Gründe</th>
+        <td mat-cell *matCellDef="let order">
+          <mat-form-field appearance="fill" class="full-width">
+          <input matInput [(ngModel)]="order.extReason" (ngModelChange)="saveInputChanges(order, 'extReason', $event)" placeholder="Ausschuss wg ext. Gründe">
+        </mat-form-field>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+
+  <div class="verification-section">
+    <div class="verification">
+      <div class="a">
+        <h4>Abweichungen:</h4>
+        <div *ngIf="abweichungenText">
+          <p>{{ abweichungenText }}</p>
+        </div>
+      </div>
+      <button mat-raised-button color="primary" (click)="openDialog('abweichungen')">Abweichungen hinzufügen</button>
+
+      <div class="photo-grid">
+        <div *ngFor="let photo of abweichungenPhotos; let i = index" class="photo-container">
+          <img [src]="photo" alt="Foto" class="photo">
+          <button mat-icon-button color="warn" (click)="deletePhoto(i, 'abweichungen')">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="verification">
+      <div class="a">
+        <h4>Bemerkung:</h4>
+        <div *ngIf="bemerkungText">
+          <p>{{ bemerkungText }}</p>
+        </div>
+      </div>
+      <button mat-raised-button color="primary" (click)="openDialog('bemerkung')">Bemerkung hinzufügen</button>
+
+      <div class="photo-grid">
+        <div *ngFor="let photo of bemerkungPhotos; let i = index" class="photo-container">
+          <img [src]="photo" alt="Foto" class="photo">
+          <button mat-icon-button color="warn" (click)="deletePhoto(i, 'bemerkung')">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button mat-raised-button color="primary" *ngIf="isChecked()" disabled>Geprüft</button>
+    <button mat-raised-button color="accent" *ngIf="!isChecked()" (click)="pruefen()">Prüfen</button>
+  </div>
+  
+  
+  
+
+  <div class="actions" style="justify-content: space-around;">
+    <button mat-raised-button color="primary" (click)="save()">Speichern</button>
+    <button mat-raised-button color="warn" (click)="cancel()">Abbrechen</button>
+  </div>
+</div>

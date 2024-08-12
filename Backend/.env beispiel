@@ -1,0 +1,12 @@
+JWT_SECRET=your_jwt_secret
+MONGO_URI=mongodb://localhost:27017/
+App_URL=localhost
+PORT=3910
+DEV_URL=https://localhost:4200/
+PRO_URL=https://localhost/
+MAIL_LOGIN_TOKIN=kmapp@test.de
+nodemailer_IP=xxxxxxxxxxxxxxxx
+nodemailer_PORT=xx
+digitalHaConnection=mongodb://localhost:27017/digitalha
+ProduktionConnection=mongodb://localhost:27017/Produktionplanen
+auftragDB=mongodb://localhost:27017/auftragDB

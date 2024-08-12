@@ -1,0 +1,10 @@
+<!-- variable-druckdaten.component.html -->
+<div class="container">
+    <h1>Variable Druckdaten</h1>
+    <div class="button-container">
+      <button mat-raised-button color="primary" *ngFor="let pos of selectedPositions" (click)="navigateToPosition(pos)">
+        Position: {{ pos }}
+      </button>
+    </div>
+    <router-outlet></router-outlet>
+</div>

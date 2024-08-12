@@ -1,0 +1,12 @@
+{
+ 
+
+
+  "/api2": {
+    "target": "http://localhost:3910",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+
+}

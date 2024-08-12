@@ -1,0 +1,60 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+  width: 90%;
+}
+
+.table-and-calculations {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.left-panel, .middle-panel, .right-panel {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.left-panel table, .middle-panel table {
+  width: 100%;
+}
+
+.calculation-card {
+  width: 100%;
+  text-align: center;
+}
+
+.calculation-result {
+  margin-bottom: 10px;
+}
+
+.verification-section {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+}
+.fill-container {
+  height: 100%;
+  width: 100%;
+}
+.calculation-card1 {
+  width: 100%;
+  text-align: left;
+  margin-top: 20px;
+}
+ .calculation-result1 textarea {
+
+  text-align:left;
+  height: calc(100% - 25px); /* adjust the value as needed */
+  width: 100%;
+}
