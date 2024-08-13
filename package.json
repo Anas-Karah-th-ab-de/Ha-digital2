@@ -1,6 +1,6 @@
 {
-  "name": "ha-digital",
-  "version": "0.0.0",
+  "name": "@anas-karah-th-ab-de/ha-digital2",
+  "version": "0.1.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -25,6 +25,7 @@
     "@capacitor/android": "^6.1.2",
     "@capacitor/camera": "^6.0.2",
     "@capacitor/core": "^6.1.2",
+    "@ionic-native/nfc": "^5.36.0",
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.4.5",
     "gsap": "^3.12.5",
@@ -51,5 +52,18 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "typescript": "~5.5.2"
-  }
+  },
+  "description": "This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.1.",
+  "main": "index.js",
+  "keywords": [],
+  "author": "Anas Karah",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Anas-Karah-th-ab-de/Ha-digital2.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Anas-Karah-th-ab-de/Ha-digital2/issues"
+  },
+  "homepage": "https://github.com/Anas-Karah-th-ab-de/Ha-digital2#readme"
 }
