@@ -65,5 +65,8 @@
   "bugs": {
     "url": "https://github.com/Anas-Karah-th-ab-de/Ha-digital2/issues"
   },
-  "homepage": "https://github.com/Anas-Karah-th-ab-de/Ha-digital2#readme"
+  "homepage": "https://github.com/Anas-Karah-th-ab-de/Ha-digital2#readme",
+  "publishConfig": {
+  "@Anas-Karah-th-ab-de:registry": "https://npm.pkg.github.com"
+}
 }
