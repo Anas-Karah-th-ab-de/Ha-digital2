@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NFC Reader</title>
+</head>
+<body>
+    <h1>NFC Reader</h1>
+    <p id="status">Waiting for card...</p>
+    <p id="card-info"></p>
+
+    <script>
+        const { NFC } = require('nfc-pcsc');
+
+        const nfc = new NFC();
+
+        nfc.on('reader', reader => {
+            document.getElementById('status').textContent = 'Reader detected: ' + reader.reader.name;
+
+            reader.on('card', async card => {
+                document.getElementById('status').textContent = 'Card detected';
+                document.getElementById('card-info').textContent = `UID: ${card.uid}`;
+
+                try {
+                    const startBlock = 4; // Startblock, von dem gelesen werden soll
+                    const numberOfBlocks = 10; // Anzahl der Blöcke, die gelesen werden sollen
+                    let data = '';
+
+                    for (let i = startBlock; i < startBlock + numberOfBlocks; i++) {
+                        const blockData = await reader.read(i, 16, 16); // Lies 16 Bytes aus jedem Block
+                        data += blockData.toString('utf8');
+                    }
+
+                    document.getElementById('card-info').textContent += `\nData: ${data}`;
+                } catch (err) {
+                    document.getElementById('status').textContent = 'Error reading card';
+                    console.error('Error during reading:', err);
+                }
+            });
+
+            reader.on('error', err => {
+                document.getElementById('status').textContent = 'Reader error';
+                console.error('Reader error:', err);
+            });
+
+            reader.on('end', () => {
+                document.getElementById('status').textContent = 'Reader removed';
+            });
+        });
+
+        nfc.on('error', err => {
+            document.getElementById('status').textContent = 'NFC error';
+            console.error('NFC error:', err);
+        });
+    </script>
+</body>
+</html>
