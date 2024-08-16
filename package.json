@@ -33,6 +33,7 @@
     "jwt-decode": "^4.0.0",
     "memory-cache": "^0.2.0",
     "mongoose": "^8.5.2",
+    "nfc-pcsc": "^0.8.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "winston": "^3.14.1",

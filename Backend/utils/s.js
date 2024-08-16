@@ -2,7 +2,7 @@ const { NFC } = require('nfc-pcsc');
 
 const nfc = new NFC();
 
-/**nfc.on('reader', reader => {
+nfc.on('reader', reader => {
     console.log(`${reader.reader.name} device attached`);
 
     reader.on('card', async card => {
@@ -33,7 +33,7 @@ const nfc = new NFC();
     reader.on('end', () => {
         console.log(`${reader.reader.name} device removed`);
     });
-}); */
+}); 
 nfc.on('reader', reader => {
     console.log(`${reader.reader.name} device attached`);
 
